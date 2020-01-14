@@ -18,6 +18,7 @@ public class MainFrame {
 	JLabel hobbyLabel;
 	JTextField hobbyInput;
 	
+	
 	public static void main(String[] args) {
 		MainFrame frame = new MainFrame();
 		frame.go();
@@ -29,11 +30,17 @@ public class MainFrame {
 		nameInput = new JTextField();
 		submit = new JButton("submit");
 		submit.addActionListener(new ButtonListener());
+		submit.setSize(100,200);
+		submit.setOpaque(true);
+		
+		JLabel space = new JLabel("");
+	
 		nameInput.setSize(200, 24);
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(nameLabel);
 		panel.add(nameInput);
+		panel.setBackground(Color.CYAN);
 		
 		
 		//Age
@@ -42,6 +49,7 @@ public class MainFrame {
 		ageInput.setSize(200, 24);
 		panel.add(ageLabel);
 		panel.add(ageInput);
+		
 
 		//Hobby
 		hobbyLabel = new JLabel("Hobby: ");
@@ -54,9 +62,10 @@ public class MainFrame {
 		//frame
 		frame = new JFrame("User Creation App");
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
-		frame.getContentPane().add(BorderLayout.EAST, submit);
+		frame.getContentPane().add(BorderLayout.CENTER, submit);
 		
-		frame.setSize(500, 500);
+		frame.setSize(500, 200);
+		frame.setBackground(Color.BLUE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
