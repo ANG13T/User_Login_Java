@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -17,6 +18,9 @@ public class MainFrame {
 	
 	JLabel hobbyLabel;
 	JTextField hobbyInput;
+	
+	JMenu fileMenu;
+	JMenuItem loadMenuItem;
 	
 	
 	public static void main(String[] args) {
@@ -58,7 +62,6 @@ public class MainFrame {
 		panel.add(hobbyLabel);
 		panel.add(hobbyInput);
 		
-		
 		//frame
 		frame = new JFrame("User Creation App");
 		frame.getContentPane().add(BorderLayout.NORTH, panel);
@@ -71,9 +74,14 @@ public class MainFrame {
 	}
 	
 	class ButtonListener implements ActionListener {
+		
 		public void actionPerformed(ActionEvent ev) {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.showOpenDialog(frame);
+		
+			
 			try {
-				FileWriter writer = new FileWriter("Users.txt");
+				FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
 				writer.write(nameInput.getText());
 				writer.write(ageInput.getText());
 				writer.write(hobbyInput.getText());
@@ -83,5 +91,6 @@ public class MainFrame {
 			}
 		}
 	}
+	
 
 }

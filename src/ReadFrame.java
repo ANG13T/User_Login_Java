@@ -8,6 +8,10 @@ public class ReadFrame {
 	JFrame frame;
 	JMenu fileMenu;
 	JMenuItem loadMenuItem;
+	JPanel userInfoPanel;
+	JLabel userName;
+	JLabel userAge;
+	JLabel userHobby;
 	
 	public static void main(String[] args) {
 		ReadFrame rf = new ReadFrame();
@@ -22,12 +26,24 @@ public class ReadFrame {
 		fileMenu.add(loadMenuItem);
 		menuBar.add(fileMenu);
 		
+		
+		//labels
+		userName = new JLabel("");
+		userAge = new JLabel("");
+		userHobby = new JLabel("");
+		
+		userInfoPanel = new JPanel();
+		userInfoPanel.add(userName);
+		userInfoPanel.add(userAge);
+		userInfoPanel.add(userHobby);
+		
 		frame = new JFrame("User File Reader");
 		frame.setJMenuBar(menuBar);
 		
 		frame.setSize(500, 200);
 		frame.setBackground(Color.BLUE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(BorderLayout.CENTER, userInfoPanel);
 		frame.setVisible(true);
 	}
 	
@@ -36,6 +52,7 @@ public class ReadFrame {
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.showOpenDialog(frame);
 			readFile(fileChooser.getSelectedFile());
+			
 		}
 	}
 	
@@ -44,7 +61,7 @@ public class ReadFrame {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line = null;
 			while((line = reader.readLine()) != null) {
-				System.out.println(line);
+				userName.setText(line);
 			}
 			reader.close();
 		} catch(Exception ex) {
